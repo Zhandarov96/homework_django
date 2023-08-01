@@ -6,12 +6,11 @@ import os
 
 def home_view(request):
     template_name = 'app/home.html'
-    # впишите правильные адреса страниц, используя
-    # функцию `reverse`
     pages = {
         'Главная страница': reverse('home'),
         'Показать текущее время': reverse('time'),
         'Показать содержимое рабочей директории': reverse('workdir')
+        #'Произведение чисел': reverse('mult')
     }
     
     # context и параметры render менять не нужно
@@ -36,3 +35,8 @@ def workdir_view(request):
     # директории
     msg = [os.listdir(path='.')]
     return HttpResponse(msg)
+
+
+def mult(request, a, b):
+    result = a * b
+    return HttpResponse(f'Произведение чисел равно: {result}')
